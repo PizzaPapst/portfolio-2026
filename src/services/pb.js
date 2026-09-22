@@ -1,6 +1,7 @@
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('https://pb.maik-bartels.com');
+const POCKETBASE_URL = import.meta.env.VITE_POCKETBASE_URL || 'https://pb.maik-bartels.com';
+const pb = new PocketBase(POCKETBASE_URL);
 
 export async function getArticles(options = {}) {
   return await pb.collection('article').getFullList({
