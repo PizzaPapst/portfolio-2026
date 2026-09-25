@@ -7,7 +7,7 @@ import PrimaryButton from './PrimaryButton';
  * Behandelt automatisch aktive und inaktive Zustände.
  */
 export function NavItem({ to, children, className = '', ...props }) {
-  const baseStyles = 'group relative inline-flex items-center h-14 text-base font-medium px-4 cursor-pointer';
+  const baseStyles = 'group relative inline-flex items-center h-12 sm:h-14 text-sm sm:text-base font-medium px-3 sm:px-4 cursor-pointer';
   const inactiveStyles = 'text-text-subtle hover:text-text-default transition-colors duration-200 ease-out';
   const activeStyles = 'text-primary';
 
@@ -68,9 +68,9 @@ export default function Navbar() {
           : 'bg-background-default/80 backdrop-blur-sm border-b border-transparent'
         }`}
     >
-      <nav className="px-8 py-4 flex justify-center">
-        <div className="max-w-[1000px] flex items-center justify-between w-full">
-          <div className="flex items-center gap-2">
+      <nav className="px-4 sm:px-8 py-3 sm:py-4 flex justify-center">
+        <div className="max-w-[1000px] flex items-center justify-between w-full gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <NavItem to="/" end>
               Home
             </NavItem>
@@ -85,6 +85,7 @@ export default function Navbar() {
           <PrimaryButton
             href="mailto:maik.bartels2@gmail.com"
             label="Get in Touch"
+            className="px-3 sm:px-6 h-11 sm:h-14 text-sm sm:text-base shrink-0"
           />
         </div>
       </nav>

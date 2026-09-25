@@ -44,8 +44,8 @@ export default function Link({
 
   // Grundlegendes Styling - mit Icon als group flex, sonst inline text-underline
   const baseStyles = icon
-    ? `group inline-flex items-center gap-2.5 cursor-pointer text-primary transition-all duration-200`
-    : `cursor-pointer text-primary underline decoration-transparent underline-offset-8 hover:decoration-current hover:underline-offset-4 transition-all duration-200`;
+    ? `group inline-flex items-center gap-2.5 cursor-pointer text-primary transition-all duration-200 max-w-full min-w-0`
+    : `cursor-pointer text-primary underline decoration-transparent underline-offset-8 hover:decoration-current hover:underline-offset-4 transition-all duration-200 [overflow-wrap:anywhere] break-words`;
 
   const combinedClassName = `${baseStyles} ${className}`.trim();
 
@@ -54,7 +54,7 @@ export default function Link({
       <span className="inline-flex items-center shrink-0" aria-hidden="true">
         {icon}
       </span>
-      <span className="underline decoration-transparent underline-offset-8 group-hover:decoration-current group-hover:underline-offset-4 transition-all duration-200">
+      <span className="underline decoration-transparent underline-offset-8 group-hover:decoration-current group-hover:underline-offset-4 transition-all duration-200 min-w-0 [overflow-wrap:anywhere] break-words">
         {content}
       </span>
     </>

@@ -70,6 +70,11 @@
   --leading-caption: 1.5;
 }
 
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--color-background-default);
