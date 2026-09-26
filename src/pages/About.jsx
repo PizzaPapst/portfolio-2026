@@ -1,9 +1,26 @@
+import { useState } from 'react';
 import pic1 from '../assets/pic1.webp';
 import pic2 from '../assets/pic2.webp';
 import PrimaryButton from '../components/PrimaryButton';
 import SecondaryButton from '../components/SecondaryButton';
+import { getFile, getFileUrl } from '../services/pb';
 
 export default function About() {
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownloadResume = async () => {
+    if (isDownloading) return;
+    try {
+      setIsDownloading(true);
+      const record = await getFile('d8gnn2jgps5lbqw');
+      const fileUrl = getFileUrl(record, record.file, { download: '1' });
+      window.open(fileUrl, '_blank');
+    } catch (error) {
+      console.error('Fehler beim Herunterladen des Resumes:', error);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
   return (
     <main className="flex flex-col">
       <section className="flex items-center justify-center bg-background-default px-8 py-[100px]">
@@ -63,11 +80,12 @@ export default function About() {
             <div className="flex items-center gap-4">
               <PrimaryButton
                 label="LinkedIn"
-                onClick={() => window.open('https://www.linkedin.com', '_blank')}
+                onClick={() => window.open('https://www.linkedin.com/in/maik-bartels-ab9a8721a', '_blank')}
               />
               <SecondaryButton
-                label="Resume"
-                onClick={() => console.log('Resume clicked')}
+                label={isDownloading ? 'Lade...' : 'Resume'}
+                onClick={handleDownloadResume}
+                disabled={isDownloading}
               />
             </div>
 

@@ -201,7 +201,7 @@ export default function Bot({ onClose }) {
           value={input}
           onChange={setInput}
           onSubmit={handleSend}
-          placeholder="Frag nach meinem Designprozess..."
+          placeholder="Ask about my design process..."
           disabled={isLoading}
           autoFocus
           aria-label="Nachricht an Maik-Bot eingeben"

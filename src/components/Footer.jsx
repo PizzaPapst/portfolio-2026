@@ -22,7 +22,7 @@ export default function Footer() {
               Maik Bartels
             </h2>
             <p className="text-text-inverted-subtle">
-              UX Designer & Frontend Developer aus Hamburg
+              UX Designer & Frontend Developer from Hamburg
             </p>
           </div>
 
@@ -40,7 +40,7 @@ export default function Footer() {
                 maik.bartels2@gmail.com
               </Link>
               <Link
-                to="https://www.linkedin.com"
+                to="https://www.linkedin.com/in/maik-bartels-ab9a8721a"
                 className="text-text-inverted-subtle hover:text-text-inverted py-2"
               >
                 LinkedIn

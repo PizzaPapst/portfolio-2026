@@ -18,6 +18,10 @@ export async function getArticleBlocks(articleId) {
   });
 }
 
+export async function getFile(fileId) {
+  return await pb.collection('files').getOne(fileId);
+}
+
 export function getFileUrl(record, filename, queryParams = {}) {
   if (!record || !filename) return '';
   return pb.files.getURL(record, filename, queryParams);
