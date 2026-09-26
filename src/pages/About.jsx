@@ -69,10 +69,10 @@ export default function About() {
                 Hi everyone, I was born and raised in the southern part of Hamburg, where I still live today. From an early age, I had two main interests: sports and technology. At first, it was just little projects and, above all, lots of video games, but eventually I was drawn to programming.
               </p>
               <p>
-                After graduating from high school and spending a year in the Navy, I went to Lübeck to study. I planned to major in Media Informatics; today, I’m in the middle of my master’s program and have been working as a UX designer for over three years. Throughout this time, I’ve already worked on many projects. I’ve always found it particularly exciting when design meets technology. In addition to designing complex interfaces, I’ve especially enjoyed working on design systems and accessibility. The systematic approach and the discipline of thinking holistically.
+                After graduating from high school and spending a year in the Navy, I went to Lübeck to study. I planned to major in Media Informatics. Today, I’m in the middle of my master’s program and have been working as a UX designer for over three years. Throughout this time, I’ve already worked on many projects. I’ve always found it particularly exciting when design meets technology. In addition to designing complex interfaces, I’ve especially enjoyed working on design systems and accessibility. The systematic approach and the discipline of thinking holistically.
               </p>
               <p>
-                In my leisure time, I pursue my other interest: sports. Personally, I love playing soccer, going to the gym, or running. I also enjoy immersing myself in the world of sports while watching TV—from soccer to the NFL to Formula 1, I cover it all. Otherwise, I tinker with my own projects using React, explore new technologies, expand my smart home setup in Home Assistant, or sit down with my PlayStation.
+                In my leisure time, I pursue my other interest: sports. Personally, I love playing soccer, going to the gym, or running. I also enjoy immersing myself in the world of sports while watching TV, from soccer or NFL to Formula 1, I cover it all. Otherwise, I tinker with my own projects using React, explore new technologies, expand my smart home setup in Home Assistant, or sit down with my PlayStation.
               </p>
             </div>
 
@@ -83,7 +83,7 @@ export default function About() {
                 onClick={() => window.open('https://www.linkedin.com/in/maik-bartels-ab9a8721a', '_blank')}
               />
               <SecondaryButton
-                label={isDownloading ? 'Lade...' : 'Resume'}
+                label='Resume'
                 onClick={handleDownloadResume}
                 disabled={isDownloading}
               />
