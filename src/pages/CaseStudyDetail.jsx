@@ -28,6 +28,38 @@ function getFileIcon(filename) {
   return <Document size={24} />;
 }
 
+function formatEmbedUrl(rawUrl) {
+  if (!rawUrl) return '';
+  const url = rawUrl.trim();
+
+  // Falls ein kompletter <iframe src="..."> Code eingefügt wurde, nur die src-URL extrahieren
+  const iframeMatch = url.match(/src=["']([^"']+)["']/i);
+  const cleanUrl = iframeMatch ? iframeMatch[1] : url;
+
+  // Figma-Links automatisch in eine Embed-URL umwandeln
+  if (cleanUrl.includes('figma.com')) {
+    if (cleanUrl.includes('embed.figma.com') || cleanUrl.includes('figma.com/embed')) {
+      return cleanUrl;
+    }
+    return `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(cleanUrl)}`;
+  }
+
+  // Storybook-Links: Tastatur-Shortcuts im Embed deaktivieren
+  if (cleanUrl.includes('?path=/story/') || cleanUrl.includes('?path=/docs/')) {
+    try {
+      const parsed = new URL(cleanUrl);
+      if (!parsed.searchParams.has('shortcuts')) {
+        parsed.searchParams.set('shortcuts', 'false');
+      }
+      return parsed.toString();
+    } catch {
+      return cleanUrl;
+    }
+  }
+
+  return cleanUrl;
+}
+
 export default function CaseStudyDetail() {
   const { id } = useParams();
   const [blocks, setBlocks] = useState([]);
@@ -48,6 +80,7 @@ export default function CaseStudyDetail() {
 
   const markdownOptions = {
     wrapper: 'div',
+    tagfilter: false,
     overrides: {
       h1: { props: { className: 'text-h2 sm:text-h1 leading-h2 sm:leading-h1 font-bold text-headline-default mt-8 mb-4 max-w-[800px] w-full break-words' } },
       h2: { props: { className: 'text-h3 sm:text-h2 leading-h3 sm:leading-h2 font-semibold text-headline-default mt-4 mb-1 max-w-[800px] w-full break-words' } },
@@ -71,6 +104,17 @@ export default function CaseStudyDetail() {
           height: undefined,
           className: 'w-full h-auto object-cover mb-4',
         }
+      },
+      iframe: {
+        component: ({ src, title }) => (
+          <iframe
+            src={formatEmbedUrl(src)}
+            title={title || 'Interactive Embed'}
+            loading="lazy"
+            allowFullScreen
+            className="w-full max-w-[1000px] h-[500px] sm:h-[640px] border border-accent bg-background-subtle/50 my-6"
+          />
+        ),
       },
     },
   };
@@ -113,6 +157,19 @@ export default function CaseStudyDetail() {
                       images={block.gallery_images.map((imgName) => getFileUrl(block, imgName))}
                       altTexts={block.alt_texts}
                       labels={block.labe_texts || block.label_texts || block.labels || block.label}
+                    />
+                  </div>
+                )}
+
+                {/* Falls der Block ein Embed (Figma, Storybook, etc.) in embed_url hat */}
+                {block.embed_url && (
+                  <div className="w-full mt-8 mb-12 min-w-0">
+                    <iframe
+                      src={formatEmbedUrl(block.embed_url)}
+                      title="Interactive Embed"
+                      loading="lazy"
+                      allowFullScreen
+                      className="w-full h-[500px] sm:h-[640px] border border-accent bg-background-subtle/50"
                     />
                   </div>
                 )}
