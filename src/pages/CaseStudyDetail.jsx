@@ -58,6 +58,20 @@ export default function CaseStudyDetail() {
       ol: { props: { className: 'list-decimal list-outside pl-6 space-y-1 mb-4 text-text-default max-w-[800px] w-full break-words' } },
       li: { props: { className: 'text-body leading-body max-w-[800px] break-words' } },
       a: { props: { className: 'text-primary underline hover:opacity-80 break-words' } },
+      img: { props: { className: 'w-full h-auto object-cover mb-4' } },
+      video: {
+        props: {
+          autoPlay: true,
+          loop: true,
+          muted: true,
+          playsInline: true,
+          controls: false,
+          style: undefined,
+          width: undefined,
+          height: undefined,
+          className: 'w-full h-auto object-cover mb-4',
+        }
+      },
     },
   };
 
